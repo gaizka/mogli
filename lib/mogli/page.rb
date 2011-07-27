@@ -19,6 +19,9 @@ module Mogli
     # As a like
     define_properties :created_time
 
+    # Number of checkins, not Checkin assocciation.
+    define_properties :checkins
+
     def client_for_page
       if access_token.nil? || access_token.empty?
         raise MissingAccessToken.new("You can only get a client for this page if an access_token has been provided. i.e. via /me/accounts")
