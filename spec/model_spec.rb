@@ -100,6 +100,11 @@ describe Mogli::Model do
     model.should be_frozen
   end
 
+  it "allows deleting the post, and inspecting the result" do
+    mock_client.should_receive(:delete).with(1)
+    model.destroy_and_get_result
+  end
+  
   it "emits warnings when properties that don't exist are written to" do
     model.should_receive(:warn_about_invalid_property).with("doesnt_exist")
     model.doesnt_exist=1

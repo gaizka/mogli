@@ -50,6 +50,11 @@ module Mogli
       freeze
     end
 
+    def destroy_and_get_result
+      client.delete(id)
+    end
+    
+    
     def self.included(other)
       other.extend(ClassMethods)
     end
