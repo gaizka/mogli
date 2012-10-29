@@ -205,6 +205,17 @@ describe Mogli::Model do
 
     end
 
+    it "does not raise an exception but returns empty result set if response is empty array" do
+      response = mock('HTTParty::Response',
+        :parsed_response => [],
+        :key? => false,
+        :code => 200)
+
+      Mogli::Client.should_receive(:get).with(
+        "https://graph.facebook.com/", :query =>{ :ids => '123456'}
+        ).and_return(response)
+      TestModel.find([123456])
+    end
   end
 
   describe "Searching" do
