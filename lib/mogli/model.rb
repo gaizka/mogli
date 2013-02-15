@@ -114,6 +114,7 @@ module Mogli
       end
 
       add_creation_method(method_name,klass)
+      (@populating_accessors ||= []) << method_name
     end
 
     def self.hash_populating_accessor_with_default_field(method_name,default_field,*klass)
@@ -126,6 +127,7 @@ module Mogli
       end
 
       add_creation_method(method_name,klass)
+      (@populating_accessors ||= []) << method_name
     end
 
     def self.add_creation_method(name,klass)
@@ -151,6 +153,7 @@ module Mogli
       end
 
       add_creation_method(name,klass)
+      (@associations ||= []) << name
     end
 
     def fetch()
@@ -166,6 +169,12 @@ module Mogli
     
     def merge!(other)
       @_values.merge!(other.instance_variable_get("@_values"))
+      # We need to copy not only root values, but, for example, user.location
+      ( (self.class.instance_variable_get("@populating_accessors") || []) +
+        (self.class.instance_variable_get("@associations") || [])).each do |var_name|
+
+        instance_variable_set("@#{var_name}", other.instance_variable_get("@#{var_name}"))
+      end
     end
     
     def self.recognize?(data)
