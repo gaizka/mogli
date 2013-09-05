@@ -6,7 +6,8 @@ module Mogli
 
     define_properties :id, :from, :to, :story, :message, :picture, :link, :name, :caption,
       :description, :source, :icon, :attribution, :actions, :likes,
-      :created_time, :updated_time, :privacy, :type, :object_id, :properties
+      :created_time, :updated_time, :privacy, :type, :object_id, :properties,
+      :category, :website, :company_overview, :can_post
 
     creation_properties :message, :picture, :link, :name, :description, :caption, :source, :actions, :privacy
 
