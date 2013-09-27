@@ -21,6 +21,9 @@ module Mogli
 
     has_association :tabs, "Tab"
 
+    has_association :global_brand_children, "Page"
+    define_properties :global_brand_parent_page
+
     def client_for_page
       if access_token.nil? || access_token.empty?
         raise MissingAccessToken.new("You can only get a client for this page if an access_token has been provided. i.e. via /me/accounts")
