@@ -156,9 +156,9 @@ module Mogli
       (@associations ||= []) << name
     end
 
-    def fetch(*fields)
+    def fetch()
       raise ArgumentError.new("You cannot fetch models without a populated id attribute") if id.nil?
-      other = self.class.find(id,client,fields)
+      other = self.class.find(id,client)
       merge!(other) if other
       self
     end
