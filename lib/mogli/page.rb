@@ -2,7 +2,7 @@ module Mogli
   class Page < Profile
     set_search_type
 
-    define_properties :id, :name, :category, :username, :access_token, :namespace
+    define_properties :id, :name, :category, :username, :access_token, :namespace, :options
 
     # General
     define_properties :likes, :link, :picture, :has_added_app, :website, :description, :can_post, :checkins, :general_info, :cover, :is_published, :about, :talking_about_count, :perms
