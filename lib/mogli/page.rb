@@ -31,6 +31,10 @@ module Mogli
       Client.new(access_token)
     end
 
+    def name_and_nickname
+      [name, nickname].select(&:present?).join(" - ")
+    end
+
     def self.recognize?(hash)
       hash.has_key?("category")
     end
